@@ -30,3 +30,4 @@ npm-debug.log*
 .vercel
 api/index.cjs
 api/index.mjs
+api/index.js
