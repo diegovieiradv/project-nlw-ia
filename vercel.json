@@ -1,16 +1,4 @@
 {
   "version": 2,
-  "buildCommand": "npx tsx build.ts",
-  "builds": [
-    {
-      "src": "dist/index.cjs",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "dist/index.cjs"
-    }
-  ]
+  "buildCommand": "npx tsx build.ts"
 }

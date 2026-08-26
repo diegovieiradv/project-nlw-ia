@@ -1,13 +1,15 @@
 import { build } from 'esbuild'
 
 await build({
-  entryPoints: ['api/index.ts'],
+  entryPoints: ['src/server.ts'],
   bundle: true,
   platform: 'node',
   target: 'node22',
-  outfile: 'dist/index.cjs',
-  external: ['pg', 'pg-native'],
+  outfile: 'api/index.js',
   format: 'cjs',
+  banner: {
+    js: `const require = (await import("node:module")).createRequire(import.meta.url);`,
+  },
 })
 
 console.log('Build completed!')
