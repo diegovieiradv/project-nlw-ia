@@ -5,7 +5,7 @@
   "functions": {
     "dist/index.cjs": {
       "runtime": "@vercel/node@3",
-      "includeFiles": ["dist/**"]
+      "includeFiles": "dist/**"
     }
   },
   "routes": [
