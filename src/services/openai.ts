@@ -2,7 +2,8 @@ import OpenAI from 'openai'
 import { env } from '../env.ts'
 
 export const openai = new OpenAI({
-  apiKey: env.OPENAI_API_KEY,
+  apiKey: env.XAI_API_KEY,
+  baseURL: 'https://api.x.ai/v1',
 })
 
 export async function generateEmbedding(text: string): Promise<number[]> {
@@ -15,7 +16,7 @@ export async function generateEmbedding(text: string): Promise<number[]> {
 
 export async function chat(messages: { role: 'user' | 'system'; content: string }[]) {
   const response = await openai.chat.completions.create({
-    model: 'gpt-4o-mini',
+    model: 'grok-3-mini',
     messages,
   })
   return response.choices[0].message.content

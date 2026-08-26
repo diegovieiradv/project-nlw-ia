@@ -1,15 +1,16 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/index.ts",
-      "use": "@vercel/node"
+  "buildCommand": "npx tsx build.ts",
+  "outputDirectory": "api",
+  "functions": {
+    "api/index.cjs": {
+      "runtime": "@vercel/node"
     }
-  ],
+  },
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "api/index.ts"
+      "dest": "api/index.cjs"
     }
   ]
 }

@@ -25,3 +25,6 @@ npm-debug.log*
 
 # Vercel
 .vercel/
+.vercel
+api/index.cjs
+api/index.mjs

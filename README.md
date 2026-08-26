@@ -2,7 +2,7 @@
 
 [![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=flat&logo=vercel)](https://project-nlw-ia.vercel.app)
 
-Backend API para o projeto NLW IA, construído com **Fastify**, **Drizzle ORM** e **PostgreSQL** com suporte a **pgvector** para embeddings vetoriais e **OpenAI** para geração de respostas com RAG.
+Backend API para o projeto NLW IA, construído com **Fastify**, **Drizzle ORM** e **PostgreSQL** com suporte a **pgvector** para embeddings vetoriais e **Grok (xAI)** para geração de respostas com RAG.
 
 **🔗 Deploy:** https://project-nlw-ia.vercel.app
 
@@ -12,7 +12,7 @@ Backend API para o projeto NLW IA, construído com **Fastify**, **Drizzle ORM** 
 - **Framework:** Fastify v5
 - **Banco de Dados:** PostgreSQL 17 + pgvector
 - **ORM:** Drizzle ORM
-- **IA:** OpenAI (embeddings + chat)
+- **IA:** Grok/xAI (embeddings + chat)
 - **Validação:** Zod + fastify-type-provider-zod
 - **Lint/Format:** Biome + Ultracite
 
@@ -20,7 +20,7 @@ Backend API para o projeto NLW IA, construído com **Fastify**, **Drizzle ORM** 
 
 - Node.js >= 22
 - Docker
-- Chave de API da OpenAI
+- Chave de API da xAI (Grok)
 
 ## Configuração
 
@@ -41,7 +41,7 @@ npm run db:generate
 npm run db:push
 ```
 
-Configure a variável `OPENAI_API_KEY` no seu `.env` com sua chave da OpenAI.
+Configure a variável `XAI_API_KEY` no seu `.env` com sua chave da xAI.
 
 ## Desenvolvimento
 
