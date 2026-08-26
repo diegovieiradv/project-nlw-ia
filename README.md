@@ -1,6 +1,10 @@
 # NLW IA - Backend API
 
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=flat&logo=vercel)](https://project-nlw-ia.vercel.app)
+
 Backend API para o projeto NLW IA, construído com **Fastify**, **Drizzle ORM** e **PostgreSQL** com suporte a **pgvector** para embeddings vetoriais.
+
+**🔗 Deploy:** https://project-nlw-ia.vercel.app
 
 ## Stack
 
