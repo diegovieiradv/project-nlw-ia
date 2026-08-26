@@ -4,7 +4,7 @@
   "outputDirectory": ".",
   "functions": {
     "dist/index.cjs": {
-      "runtime": "@vercel/node"
+      "runtime": "@vercel/node@2"
     }
   },
   "routes": [
