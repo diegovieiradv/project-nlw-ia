@@ -5,7 +5,7 @@ await build({
   bundle: true,
   platform: 'node',
   target: 'node22',
-  outfile: 'api/index.cjs',
+  outfile: 'dist/index.cjs',
   external: ['pg', 'pg-native'],
   format: 'cjs',
 })

@@ -10,6 +10,8 @@ node_modules/
 dist/
 build/
 *.tsbuildinfo
+api/index.cjs
+api/index.mjs
 
 # IDE
 .vscode/*
