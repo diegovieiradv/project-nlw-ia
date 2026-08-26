@@ -1,16 +1,19 @@
 {
   "name": "project-nlw-ia",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "NLW IA - Backend API with Fastify, Drizzle ORM and PostgreSQL with pgvector",
   "type": "module",
   "scripts": {
     "dev": "node --env-file=.env --experimental-strip-types --no-warnings --watch src/server.ts",
-    "start": "node --env-file=.env --experimental-strip-types --no-warnings src/server.ts"
+    "start": "node --env-file=.env --experimental-strip-types --no-warnings src/server.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": ["nlw", "ia", "ai", "fastify", "drizzle"],
+  "author": "Diego Vieira",
+  "license": "MIT",
   "dependencies": {
     "@fastify/cors": "^11.0.1",
     "@types/node": "^24.0.12",
