@@ -2,11 +2,6 @@
   "version": 2,
   "buildCommand": "npx tsx build.ts",
   "outputDirectory": "api",
-  "functions": {
-    "api/index.cjs": {
-      "runtime": "@vercel/node"
-    }
-  },
   "routes": [
     {
       "src": "/(.*)",
