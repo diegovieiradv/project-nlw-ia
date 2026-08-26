@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "installCommand": "npm install && npx tsx build.ts",
-  "outputDirectory": ".",
-  "functions": {
-    "dist/index.cjs": {
-      "runtime": "@vercel/node@2"
+  "buildCommand": "npx tsx build.ts",
+  "builds": [
+    {
+      "src": "dist/index.cjs",
+      "use": "@vercel/node"
     }
-  },
+  ],
   "routes": [
     {
       "src": "/(.*)",
