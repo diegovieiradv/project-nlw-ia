@@ -3,7 +3,7 @@ import { env } from '../env.ts'
 
 export const openai = new OpenAI({
   apiKey: env.XAI_API_KEY,
-  baseURL: 'https://api.x.ai/v1',
+  baseURL: 'https://api.groq.com/openai/v1',
 })
 
 export async function generateEmbedding(text: string): Promise<number[]> {
@@ -16,7 +16,7 @@ export async function generateEmbedding(text: string): Promise<number[]> {
 
 export async function chat(messages: { role: 'user' | 'system'; content: string }[]) {
   const response = await openai.chat.completions.create({
-    model: 'grok-3-mini',
+    model: 'llama-3.3-70b-versatile',
     messages,
   })
   return response.choices[0].message.content
