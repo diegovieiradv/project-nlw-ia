@@ -62,8 +62,10 @@ export async function messagesRoutes(app: FastifyInstance) {
       LIMIT 5
     `)
 
-    const context = similarMessages.rows
-      .map((m: any) => `${m.role}: ${m.content}`)
+    const rows = similarMessages as unknown as Array<{ role: string; content: string; similarity: number }>
+
+    const context = rows
+      .map((m) => `${m.role}: ${m.content}`)
       .join('\n')
 
     const answer = await chat([
@@ -79,6 +81,6 @@ export async function messagesRoutes(app: FastifyInstance) {
       .values({ roomId, content: answer ?? '', role: 'assistant' })
       .returning()
 
-    return { answer: assistantMessage.content, relatedMessages: similarMessages.rows }
+    return { answer: assistantMessage.content, relatedMessages: rows }
   })
 }
