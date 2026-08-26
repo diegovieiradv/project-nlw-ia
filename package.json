@@ -11,7 +11,13 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio"
   },
-  "keywords": ["nlw", "ia", "ai", "fastify", "drizzle"],
+  "keywords": [
+    "nlw",
+    "ia",
+    "ai",
+    "fastify",
+    "drizzle"
+  ],
   "author": "Diego Vieira",
   "license": "MIT",
   "dependencies": {
@@ -21,6 +27,7 @@
     "drizzle-orm": "^0.44.2",
     "fastify": "^5.4.0",
     "fastify-type-provider-zod": "^5.0.2",
+    "openai": "^7.5.0",
     "postgres": "^3.4.7",
     "typescript": "^5.8.3",
     "zod": "^3.25.76"
