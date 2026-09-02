@@ -15,6 +15,10 @@
       "dest": "/index.html"
     },
     {
+      "src": "/(.+)\\.(html|css|js|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot|otf|webp|avif)",
+      "dest": "/$1.$2"
+    },
+    {
       "src": "/(.*)",
       "dest": "api/index.ts"
     }
