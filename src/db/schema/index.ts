@@ -1,2 +1,2 @@
-export { rooms } from './rooms.ts'
-export { messages } from './messages.ts'
+export { messages } from './messages.ts';
+export { rooms } from './rooms.ts';

@@ -2,7 +2,7 @@
 
 [![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=flat&logo=vercel)](https://project-nlw-ia.vercel.app)
 
-Backend API para o projeto NLW IA, construído com **Fastify**, **Drizzle ORM** e **PostgreSQL** com suporte a **pgvector** para embeddings vetoriais e **Grok (xAI)** para geração de respostas com RAG.
+Backend API para o projeto NLW IA, construído com **Fastify**, **Drizzle ORM** e **PostgreSQL** com suporte a **pgvector** para embeddings vetoriais e **Groq** para geração de respostas com RAG.
 
 **🔗 Deploy:** https://project-nlw-ia.vercel.app
 
@@ -12,7 +12,7 @@ Backend API para o projeto NLW IA, construído com **Fastify**, **Drizzle ORM** 
 - **Framework:** Fastify v5
 - **Banco de Dados:** PostgreSQL 17 + pgvector
 - **ORM:** Drizzle ORM
-- **IA:** Grok/xAI (embeddings + chat)
+- **IA:** Groq (embeddings + chat)
 - **Validação:** Zod + fastify-type-provider-zod
 - **Lint/Format:** Biome + Ultracite
 
@@ -20,7 +20,7 @@ Backend API para o projeto NLW IA, construído com **Fastify**, **Drizzle ORM** 
 
 - Node.js >= 22
 - Docker
-- Chave de API da xAI (Grok)
+- Chave de API da Groq
 
 ## Configuração
 
@@ -41,7 +41,7 @@ npm run db:generate
 npm run db:push
 ```
 
-Configure a variável `XAI_API_KEY` no seu `.env` com sua chave da xAI.
+Configure a variável `GROQ_API_KEY` no seu `.env` com sua chave da Groq.
 
 ## Desenvolvimento
 
@@ -116,7 +116,7 @@ src/
 │   ├── rooms.ts             # Rotas CRUD de salas
 │   └── messages.ts          # Rotas de mensagens e perguntas
 ├── services/
-│   └── openai.ts            # Integração com OpenAI
+│   └── groq.ts              # Integração com Groq (SDK compatível OpenAI)
 ├── env.ts                   # Validação de variáveis de ambiente
 ├── app.ts                   # Configuração do Fastify
 └── server.ts                # Inicialização do servidor
