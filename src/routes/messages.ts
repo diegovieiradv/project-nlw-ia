@@ -2,7 +2,7 @@ import { eq, sql } from 'drizzle-orm';
 import type { FastifyInstance } from 'fastify';
 import { db } from '../db/connection.ts';
 import { messages, rooms } from '../db/schema/index.ts';
-import { chat, generateEmbedding } from '../services/groq.ts';
+import { chat, generateEmbedding } from '../services/gemini.ts';
 
 export async function messagesRoutes(app: FastifyInstance) {
   app.post('/rooms/:roomId/messages', async (request, reply) => {
@@ -17,11 +17,17 @@ export async function messagesRoutes(app: FastifyInstance) {
       return reply.status(404).send({ error: 'Room not found' });
     }
 
-    const embedding = await generateEmbedding(content);
+    let embedding: number[];
+    try {
+      embedding = await generateEmbedding(content);
+    } catch (err) {
+      app.log.error(err, 'Failed to generate embedding');
+      return reply.status(502).send({ error: 'Failed to process message' });
+    }
 
     const [message] = await db
       .insert(messages)
-      .values({ roomId, content, role, embedding: JSON.stringify(embedding) })
+      .values({ roomId, content, role, embedding })
       .returning();
 
     return reply.status(201).send(message);
@@ -53,13 +59,19 @@ export async function messagesRoutes(app: FastifyInstance) {
       return reply.status(404).send({ error: 'Room not found' });
     }
 
-    const questionEmbedding = await generateEmbedding(question);
+    let questionEmbedding: number[];
+    try {
+      questionEmbedding = await generateEmbedding(question);
+    } catch (err) {
+      app.log.error(err, 'Failed to generate question embedding');
+      return reply.status(502).send({ error: 'Failed to process question' });
+    }
 
     const similarMessages = await db.execute(sql`
       SELECT content, role,
-        1 - (embedding::jsonb::text::vector <=> ${JSON.stringify(questionEmbedding)}::vector) AS similarity
+        1 - (embedding::text::vector <=> ${JSON.stringify(questionEmbedding)}::vector) AS similarity
       FROM messages
-      WHERE room_id = ${roomId}
+      WHERE "roomId" = ${roomId}
         AND embedding IS NOT NULL
       ORDER BY similarity DESC
       LIMIT 5
@@ -73,13 +85,19 @@ export async function messagesRoutes(app: FastifyInstance) {
 
     const context = rows.map((m) => `${m.role}: ${m.content}`).join('\n');
 
-    const answer = await chat([
-      {
-        role: 'system',
-        content: `Você é um assistente útil. Responda com base no contexto da sala de conversa abaixo. Se a pergunta não puder ser respondida com o contexto diga que não há informações suficientes.\n\nContexto:\n${context}`,
-      },
-      { role: 'user', content: question },
-    ]);
+    let answer: string | undefined;
+    try {
+      answer = await chat([
+        {
+          role: 'system',
+          content: `Você é um assistente útil. Responda com base no contexto da sala de conversa abaixo. Se a pergunta não puder ser respondida com o contexto diga que não há informações suficientes.\n\nContexto:\n${context}`,
+        },
+        { role: 'user', content: question },
+      ]);
+    } catch (err) {
+      app.log.error(err, 'Failed to get AI response');
+      return reply.status(502).send({ error: 'AI provider unavailable' });
+    }
 
     const [assistantMessage] = await db
       .insert(messages)
