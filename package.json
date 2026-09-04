@@ -2,6 +2,7 @@
   "name": "project-nlw-ia",
   "version": "1.0.0",
   "description": "NLW IA - Chat com IA usando RAG",
+  "type": "module",
   "scripts": {
     "dev": "node --env-file=.env --experimental-strip-types --no-warnings --watch src/server.ts",
     "start": "node --env-file=.env --experimental-strip-types --no-warnings src/server.ts",
