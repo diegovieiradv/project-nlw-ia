@@ -6,6 +6,10 @@
       "config": {
         "includeFiles": ["src/**"]
       }
+    },
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
     }
   ],
   "rewrites": [
