@@ -15,11 +15,11 @@ app.register(fastifyCors);
 app.setSerializerCompiler(serializerCompiler);
 app.setValidatorCompiler(validatorCompiler);
 
-app.get('/health', () => {
+app.get('/api/health', () => {
   return { status: 'ok', timestamp: new Date().toISOString() };
 });
 
-app.register(roomsRoutes);
-app.register(messagesRoutes);
+app.register(roomsRoutes, { prefix: '/api' });
+app.register(messagesRoutes, { prefix: '/api' });
 
 export { app };

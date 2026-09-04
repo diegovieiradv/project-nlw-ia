@@ -27,23 +27,23 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
 export const api = {
   // Health
   async health(): Promise<HealthResponse> {
-    return request<HealthResponse>("/health");
+    return request<HealthResponse>("/api/health");
   },
 
   // Rooms
   async getRooms(): Promise<Room[]> {
-    return request<Room[]>("/rooms");
+    return request<Room[]>("/api/rooms");
   },
 
   async getRoom(id: string): Promise<Room> {
-    return request<Room>(`/rooms/${id}`);
+    return request<Room>(`/api/rooms/${id}`);
   },
 
   async createRoom(data: {
     name: string;
     description?: string;
   }): Promise<Room> {
-    return request<Room>("/rooms", {
+    return request<Room>("/api/rooms", {
       method: "POST",
       body: JSON.stringify(data),
     });
@@ -51,14 +51,14 @@ export const api = {
 
   // Messages
   async getMessages(roomId: string): Promise<Message[]> {
-    return request<Message[]>(`/rooms/${roomId}/messages`);
+    return request<Message[]>(`/api/rooms/${roomId}/messages`);
   },
 
   async sendMessage(
     roomId: string,
     data: { content: string; role?: "user" | "assistant" }
   ): Promise<Message> {
-    return request<Message>(`/rooms/${roomId}/messages`, {
+    return request<Message>(`/api/rooms/${roomId}/messages`, {
       method: "POST",
       body: JSON.stringify(data),
     });
@@ -69,7 +69,7 @@ export const api = {
     roomId: string,
     question: string
   ): Promise<QuestionResponse> {
-    return request<QuestionResponse>(`/rooms/${roomId}/questions`, {
+    return request<QuestionResponse>(`/api/rooms/${roomId}/questions`, {
       method: "POST",
       body: JSON.stringify({ question }),
     });

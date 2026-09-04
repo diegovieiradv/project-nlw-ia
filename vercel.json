@@ -14,12 +14,7 @@
     }
   ],
   "routes": [
-    { "src": "/api/(health|rooms.*)", "dest": "api/index.ts" },
-    { "src": "/health", "dest": "api/index.ts" },
-    { "src": "/rooms$", "dest": "api/index.ts" },
-    { "src": "/rooms/([^/]+)$", "dest": "api/index.ts" },
-    { "src": "/rooms/([^/]+)/messages$", "dest": "api/index.ts" },
-    { "src": "/rooms/([^/]+)/questions$", "dest": "api/index.ts" },
+    { "src": "/api/(.*)", "dest": "api/index.ts" },
     { "src": "/(.*)", "dest": "frontend/$1" }
   ]
 }
