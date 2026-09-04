@@ -12,6 +12,11 @@ build/
 *.tsbuildinfo
 api/index.cjs
 api/index.mjs
+api/index.js
+
+# Next.js
+.next/
+out/
 
 # IDE
 .vscode/*
@@ -28,6 +33,6 @@ npm-debug.log*
 # Vercel
 .vercel/
 .vercel
-api/index.cjs
-api/index.mjs
-api/index.js
+
+# Playwright
+.playwright-mcp/

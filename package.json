@@ -1,42 +1,42 @@
 {
   "name": "project-nlw-ia",
   "version": "1.0.0",
-  "description": "NLW IA - Backend API with Fastify, Drizzle ORM and PostgreSQL with pgvector",
-  "type": "module",
+  "description": "NLW IA - Chat com IA usando RAG",
   "scripts": {
     "dev": "node --env-file=.env --experimental-strip-types --no-warnings --watch src/server.ts",
     "start": "node --env-file=.env --experimental-strip-types --no-warnings src/server.ts",
+    "build": "next build",
+    "lint": "next lint",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio"
   },
-  "keywords": [
-    "nlw",
-    "ia",
-    "ai",
-    "fastify",
-    "drizzle"
-  ],
-  "author": "Diego Vieira",
-  "license": "MIT",
   "dependencies": {
     "@fastify/cors": "^11.0.1",
     "@google/genai": "^2.20.0",
-    "@types/node": "^24.0.12",
     "dotenv": "^17.2.0",
     "drizzle-orm": "^0.44.2",
     "fastify": "^5.4.0",
     "fastify-type-provider-zod": "^5.0.2",
+    "next": "^14.2.0",
     "postgres": "^3.4.7",
-    "typescript": "^5.8.3",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
     "zod": "^3.25.76"
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.6",
+    "@types/node": "^24.0.12",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.0",
     "drizzle-kit": "^0.31.4",
     "esbuild": "^0.28.2",
+    "postcss": "^8.4.0",
+    "tailwindcss": "^3.4.0",
     "tsx": "^4.7.1",
+    "typescript": "^5.8.3",
     "ultracite": "5.0.32"
   }
 }
