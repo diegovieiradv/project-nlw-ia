@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "public": true,
   "builds": [
     {
       "src": "api/index.ts",
@@ -8,12 +7,24 @@
       "config": {
         "includeFiles": ["src/**"]
       }
+    },
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/next"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
+      "src": "/api/(health|rooms.*)",
       "dest": "api/index.ts"
+    },
+    {
+      "src": "/(health|rooms)(/.*)?",
+      "dest": "api/index.ts"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "frontend/$1"
     }
   ]
 }
