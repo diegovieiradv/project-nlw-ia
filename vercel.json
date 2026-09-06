@@ -1,19 +1,6 @@
 {
-  "builds": [
-    {
-      "src": "api/index.ts",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": ["src/**"]
-      }
-    },
-    {
-      "src": "package.json",
-      "use": "@vercel/next"
-    }
-  ],
   "rewrites": [
-    { "source": "/api/:path*", "destination": "api/index.ts" },
-    { "source": "/health", "destination": "api/index.ts" }
+    { "source": "/api/:path*", "destination": "api" },
+    { "source": "/health", "destination": "api" }
   ]
 }

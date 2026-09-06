@@ -1,9 +1,21 @@
 import { GoogleGenAI } from '@google/genai';
 import { env } from '../env.ts';
 
-const ai = new GoogleGenAI({ apiKey: env.GEMINI_API_KEY });
+let aiInstance: GoogleGenAI | null = null;
+
+function getAi(): GoogleGenAI {
+  if (!aiInstance) {
+    const key = env.GEMINI_API_KEY;
+    if (!key) {
+      throw new Error('GEMINI_API_KEY não está configurada');
+    }
+    aiInstance = new GoogleGenAI({ apiKey: key });
+  }
+  return aiInstance;
+}
 
 export async function generateEmbedding(text: string): Promise<number[]> {
+  const ai = getAi();
   const response = await ai.models.embedContent({
     model: 'gemini-embedding-001',
     contents: [text],
@@ -19,6 +31,7 @@ export async function generateEmbedding(text: string): Promise<number[]> {
 export async function chat(
   messages: { role: 'user' | 'system'; content: string }[]
 ) {
+  const ai = getAi();
   const systemMessage = messages.find((m) => m.role === 'system');
   const userMessages = messages.filter((m) => m.role !== 'system');
 

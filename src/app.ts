@@ -19,6 +19,10 @@ app.get('/api/health', () => {
   return { status: 'ok', timestamp: new Date().toISOString() };
 });
 
+app.get('/health', () => {
+  return { status: 'ok', timestamp: new Date().toISOString() };
+});
+
 app.register(roomsRoutes, { prefix: '/api' });
 app.register(messagesRoutes, { prefix: '/api' });
 
