@@ -1,4 +1,15 @@
 {
+  "buildCommand": "npx esbuild api/index.ts --bundle --platform=node --target=node22 --outfile=api/index.js --format=cjs && next build",
+  "builds": [
+    {
+      "src": "api/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ],
   "rewrites": [
     { "source": "/api/:path*", "destination": "api" },
     { "source": "/health", "destination": "api" }
